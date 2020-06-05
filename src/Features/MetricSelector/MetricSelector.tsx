@@ -24,6 +24,10 @@ const getMetrics = (state: IState) => {
   return metrics;
 };
 
+const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  console.log(event.target.value);
+};
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -57,7 +61,7 @@ const MetricSelector = () => {
     }
     if (!data) return;
     const { getMetrics } = data;
-    dispatch(actions.metricsDataReceived(getMetrics));
+    dispatch(actions.setMetricsOptions(getMetrics));
   }, [dispatch, data, error]);
 
   if (fetching) return <LinearProgress />;
@@ -69,6 +73,9 @@ const MetricSelector = () => {
         id="tags-outlined"
         options={metrics.options}
         filterSelectedOptions
+        onChange={(_, selectedOptions) => {
+          dispatch(actions.setMetricsSelected(selectedOptions));
+        }}
         renderInput={params => <TextField {...params} variant="outlined" label="Metrics" placeholder="Favorites" />}
       />
     </div>

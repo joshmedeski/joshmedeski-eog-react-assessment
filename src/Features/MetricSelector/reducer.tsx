@@ -18,8 +18,11 @@ const slice = createSlice({
   name: 'metrics',
   initialState,
   reducers: {
-    metricsDataReceived: (state, action: PayloadAction<string[]>) => {
+    setMetricsOptions: (state, action: PayloadAction<string[]>) => {
       state.options = action.payload;
+    },
+    setMetricsSelected: (state, action: PayloadAction<string[]>) => {
+      state.selected = action.payload;
     },
     metricsApiErrorReceived: (state, _: PayloadAction<ApiErrorAction>) => state,
   },
