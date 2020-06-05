@@ -4,7 +4,7 @@ import CardHeader from './CardHeader';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import MetricSelector from '../Features/MetricSelector/MetricSelector';
+import MetricSelector from '../Features/Metrics/Metrics';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

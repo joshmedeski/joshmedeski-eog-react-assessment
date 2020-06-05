@@ -7,7 +7,8 @@ import { createClient, useQuery, Provider } from 'urql';
 import { IState } from '../../store';
 import { actions } from './reducer';
 import { useDispatch, useSelector } from 'react-redux';
-import { LinearProgress } from '@material-ui/core';
+import { LinearProgress, Box } from '@material-ui/core';
+import MetricCard from '../../components/MetricCard';
 
 const client = createClient({
   url: 'https://react.eogresources.com/graphql',
@@ -51,6 +52,7 @@ const MetricSelector = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const metrics = useSelector(getMetrics);
+  const metricCards = metrics.selected.map(selection => <MetricCard title={selection} />);
   const [result] = useQuery({ query });
   const { fetching, data, error } = result;
 
@@ -78,6 +80,9 @@ const MetricSelector = () => {
         }}
         renderInput={params => <TextField {...params} variant="outlined" label="Metrics" placeholder="Favorites" />}
       />
+      <Box display="flex" flexWrap="wrap">
+        {metricCards}
+      </Box>
     </div>
   );
 };
